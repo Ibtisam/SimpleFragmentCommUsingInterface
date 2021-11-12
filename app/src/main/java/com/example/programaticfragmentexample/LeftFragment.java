@@ -22,6 +22,8 @@ import android.widget.Toast;
 public class LeftFragment extends Fragment {
     private Button button1;
     private Button button2;
+    private LeftFragInterface leftFragmentComm;
+
     public LeftFragment() {
         // Required empty public constructor
     }
@@ -35,6 +37,8 @@ public class LeftFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         //assign comm interface
+        leftFragmentComm = (LeftFragInterface) context;
+
     }
 
     @Override
@@ -54,14 +58,16 @@ public class LeftFragment extends Fragment {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Message 1", Toast.LENGTH_SHORT).show();
+                leftFragmentComm.sendMessage("Message from button 1");
+                //Not Recommended
+                //((MainActivity)getActivity()).sendMessage("Message from 1");
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Message 2", Toast.LENGTH_SHORT).show();
+                leftFragmentComm.sendMessage("Message from button 2");
             }
         });
     }

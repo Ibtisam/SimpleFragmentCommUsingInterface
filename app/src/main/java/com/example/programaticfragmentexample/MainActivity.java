@@ -10,7 +10,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements LeftFragInterface {
     private FragmentManager fragMan;
     private FragmentTransaction fragTrans;
     private LeftFragment leftFragment;
@@ -29,5 +29,10 @@ public class MainActivity extends AppCompatActivity{
             fragTrans.replace(R.id.frameLayout2, rightFragment);
             fragTrans.commitNow();
         }
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        rightFragment.setText(message);
     }
 }
